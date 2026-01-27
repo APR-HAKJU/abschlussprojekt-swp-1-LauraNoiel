@@ -31,12 +31,13 @@ public class Door : MonoBehaviour
         // Load scene when player presses E key while nearby
         if (isPlayerNearby && Input.GetKeyDown(interactionKey))
         {
-            LoadScene();
+            LoadScene(sceneName);
         }
     }
 
-    private void LoadScene()
+    private void LoadScene(string sceneName)
     {
+        Debug.Log("Loading scene: " + sceneName);
         if (!string.IsNullOrEmpty(sceneName))
         {
             SceneManager.LoadScene(sceneName);

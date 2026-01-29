@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+ 
 public class Door : MonoBehaviour
 {
     [SerializeField] private string sceneName;
     [SerializeField] private float interactionDistance = 2f;
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
-
+ 
     private Transform playerTransform;
     private bool isPlayerNearby = false;
-
+ 
     void Start()
     {
         // Find the player in the scene
@@ -19,22 +19,22 @@ public class Door : MonoBehaviour
             playerTransform = player.transform;
         }
     }
-
+ 
     void Update()
     {
         if (playerTransform == null) return;
-
+ 
         // Check distance to player
         float distance = Vector3.Distance(transform.position, playerTransform.position);
         isPlayerNearby = distance <= interactionDistance;
-
+ 
         // Load scene when player presses E key while nearby
         if (isPlayerNearby && Input.GetKeyDown(interactionKey))
         {
             LoadScene(sceneName);
         }
     }
-
+ 
     private void LoadScene(string sceneName)
     {
         Debug.Log("Loading scene: " + sceneName);
@@ -47,7 +47,7 @@ public class Door : MonoBehaviour
             Debug.LogWarning("Scene name not set on Door script!");
         }
     }
-
+ 
     // Optional: Draw interaction range in editor
     private void OnDrawGizmosSelected()
     {
